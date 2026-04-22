@@ -1,0 +1,5 @@
+services:
+  temshik-landing:
+    build: .
+    ports:
+      - "8080:80"
