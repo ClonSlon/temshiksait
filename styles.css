@@ -268,9 +268,9 @@ h2 {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(3,5,8,.64);
-  backdrop-filter: blur(8px);
-  z-index: 80;
+  background: rgba(3,5,8,.72);
+  backdrop-filter: blur(10px);
+  z-index: 9998;
 }
 .info-modal {
   position: fixed;
@@ -278,12 +278,13 @@ h2 {
   display: grid;
   place-items: center;
   padding: 24px;
-  z-index: 81;
+  z-index: 9999;
 }
 .info-modal-card {
   position: relative;
   width: min(680px, 100%);
   padding: 28px;
+  border: 1px solid rgba(145,182,255,.18);
 }
 .info-modal-card h3 {
   font-size: 28px;
@@ -312,14 +313,12 @@ body.modal-open {
   overflow: hidden;
 }
 
-.test-table,
-.roadmap-flow {
-  display: grid;
-  gap: 16px;
-}
 .test-table {
   overflow: hidden;
   border-radius: 30px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(18,24,36,.98), rgba(12,16,24,.95));
+  box-shadow: var(--shadow);
 }
 .test-row {
   display: grid;
@@ -327,7 +326,7 @@ body.modal-open {
   gap: 16px;
   padding: 18px 22px;
   border-bottom: 1px solid var(--line);
-  align-items: center;
+  align-items: start;
 }
 .test-row:last-child { border-bottom: 0; }
 .test-head {
@@ -344,24 +343,19 @@ body.modal-open {
 .test-row div b { color: var(--text); }
 
 .roadmap-flow {
-  grid-template-columns: repeat(5, minmax(0,1fr));
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 18px;
   align-items: stretch;
 }
 .roadmap-step {
   position: relative;
   padding: 24px;
-  min-height: 220px;
+  min-height: 0;
 }
-.roadmap-step::after {
-  content: "";
-  position: absolute;
-  top: 38px;
-  right: -10px;
-  width: 20px;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(145,182,255,.2), rgba(145,182,255,.85));
+.roadmap-step:last-child {
+  grid-column: 2 / span 2;
 }
-.roadmap-step:last-child::after { display: none; }
 .roadmap-index {
   display: inline-flex;
   align-items: center;
@@ -452,8 +446,8 @@ body.modal-open {
   }
   .comparison-row { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .test-row { grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .roadmap-flow { grid-template-columns: 1fr; }
-  .roadmap-step::after { display: none; }
+  .roadmap-flow { grid-template-columns: 1fr 1fr; }
+  .roadmap-step:last-child { grid-column: auto; }
   .section-heading { display: grid; }
   .flow-line.horizontal, .flow-line.diagonal { display: none; }
   .center-connector { min-height: 60px; }
@@ -485,7 +479,7 @@ body.modal-open {
   .mini-stat span { font-size: 28px; }
   .feature-pills { justify-content: flex-start; }
   .feature-pills span { width: 100%; text-align: center; }
-  .comparison-row, .test-row, .smartmoney-buttons { grid-template-columns: 1fr; gap: 8px; }
+  .comparison-row, .test-row, .smartmoney-buttons, .roadmap-flow { grid-template-columns: 1fr; gap: 8px; }
 }
 
 @media (max-width: 480px) {
