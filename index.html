@@ -15,9 +15,10 @@
     </div>
     <nav>
       <a href="#diagram">Карта системы</a>
-      <a href="#layers">Архитектура</a>
+      <a href="#compare">Сравнение</a>
       <a href="#test">Тест</a>
       <a href="#ai-training">Обучение AI</a>
+      <a href="#roadmap">Roadmap</a>
       <a href="#repo">GitHub</a>
     </nav>
   </header>
@@ -252,6 +253,90 @@
         <div class="ai-card glass-card"><h3>Принятие решения</h3><p>Итоговое решение выбирается по вероятности, но допускается к исполнению только через risk-management.</p></div>
         <div class="ai-card glass-card"><h3>Обучение</h3><p>Собственные торги + готовые торги. Основной крупный датасет: BTC/USDT, 2014–2023, 15m, плюс отдельное обучение на паттернах Smart Money.</p></div>
         <div class="ai-card big glass-card"><h3>Источники</h3><p>Binance Data Vision, Keras / TensorFlow, а также API-документация Binance / OKX / Bybit / Kraken для интеграционного слоя.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="compare">
+      <div class="section-heading panel-heading">
+        <div>
+          <p class="section-label">Сравнение с аналогами</p>
+          <h2>Где TEMSHIK сильнее типовых решений</h2>
+        </div>
+        <p class="section-note">Блок собран по сравнению из конкурсных материалов: коммерческие боты, open-source платформы и сам TEMSHIK по ключевым практическим критериям.</p>
+      </div>
+      <div class="comparison-table glass-card">
+        <div class="comparison-row comparison-head">
+          <div>Решение</div>
+          <div>Тип</div>
+          <div>Прозрачность</div>
+          <div>Удобство</div>
+          <div>Биржи</div>
+          <div>AI-модуль</div>
+        </div>
+        <div class="comparison-row">
+          <div><b>3Commas / Bitsgap</b></div>
+          <div>Коммерческое</div>
+          <div>Низкая / средняя</div>
+          <div>Высокое</div>
+          <div>Многие</div>
+          <div>Ограниченно / нет</div>
+        </div>
+        <div class="comparison-row">
+          <div><b>Freqtrade</b></div>
+          <div>Open-source</div>
+          <div>Высокая</div>
+          <div>Среднее</div>
+          <div>Некоторые</div>
+          <div>Можно добавить</div>
+        </div>
+        <div class="comparison-row">
+          <div><b>Hummingbot</b></div>
+          <div>Open-source</div>
+          <div>Высокая</div>
+          <div>Среднее</div>
+          <div>Некоторые</div>
+          <div>Можно добавить</div>
+        </div>
+        <div class="comparison-row comparison-accent">
+          <div><b>TEMSHIK</b></div>
+          <div>Open-source</div>
+          <div>Высокая: логи + параметры</div>
+          <div>Высокое</div>
+          <div>Binance / OKX / Bybit / Kraken</div>
+          <div>Да: Keras, подключаемый модуль</div>
+        </div>
+      </div>
+      <div class="comparison-summary glass-card">
+        <h3>Вывод</h3>
+        <p>TEMSHIK занимает промежуточную, но сильную позицию: он сочетает удобство готового интерфейса и стратегий с прозрачной открытой архитектурой, логированием и возможностью подключать более сложный AI-контур по мере роста проекта.</p>
+      </div>
+    </section>
+
+    <section class="section" id="roadmap">
+      <div class="section-heading panel-heading">
+        <div>
+          <p class="section-label">Ограничения и развитие</p>
+          <h2>Инженерная оценка текущих границ и дорожной карты</h2>
+        </div>
+        <p class="section-note">Здесь проект описан без маркетингового перегиба: что уже работает, где есть реальные ограничения и куда логично развивать систему дальше.</p>
+      </div>
+      <div class="training-grid roadmap-grid">
+        <div class="training-card glass-card">
+          <h3>Текущие ограничения</h3>
+          <p>Проект создаётся не внутри биржевого фонда, поэтому по объёму ресурсов, инфраструктуре и масштабу исследований он физически не может повторять продукты топового институционального уровня.</p>
+        </div>
+        <div class="training-card glass-card">
+          <h3>Точки роста</h3>
+          <p>Наиболее очевидные направления усиления — глубокое дообучение AI, добавление более незаметных маркеров рыночного контекста и подключение анализатора новостей как ещё одного входного слоя.</p>
+        </div>
+        <div class="training-card glass-card">
+          <h3>Расширение рынков</h3>
+          <p>Следующий технический шаг — не только усиливать криптовалютный контур, но и готовить архитектуру к адаптации под Forex и опционы на нефть.</p>
+        </div>
+        <div class="training-card big glass-card">
+          <h3>Дорожная карта</h3>
+          <p>Roadmap проекта строится как последовательное наращивание точности и применимости: сначала усиление AI-модуля и расширение аналитических признаков, затем интеграция новостного анализа, после этого — перенос на новые классы инструментов и проверка системы в более широком рыночном контуре.</p>
+        </div>
       </div>
     </section>
 

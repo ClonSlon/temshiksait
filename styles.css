@@ -239,6 +239,42 @@ h2 {
 .feedback-card h4 { font-size: 20px; margin-bottom: 8px; letter-spacing: -0.03em; }
 .repo-card a { color: var(--accent); }
 
+.comparison-table {
+  overflow: hidden;
+  border-radius: 30px;
+}
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1.2fr .9fr 1fr .9fr 1.1fr 1.1fr;
+  gap: 16px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+.comparison-row:last-child { border-bottom: 0; }
+.comparison-head {
+  color: var(--accent-2);
+  background: rgba(255,255,255,.03);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.comparison-accent {
+  background: linear-gradient(90deg, rgba(145,182,255,.08), rgba(145,182,255,.03));
+}
+.comparison-row div {
+  color: var(--muted);
+  line-height: 1.45;
+}
+.comparison-row div b { color: var(--text); }
+.comparison-summary {
+  margin-top: 18px;
+  padding: 24px;
+}
+.comparison-summary h3 { font-size: 24px; margin-bottom: 10px; letter-spacing: -0.03em; }
+.comparison-summary p { color: var(--muted); line-height: 1.58; }
+.roadmap-grid { margin-top: 0; }
+
 .video-placeholder {
   padding: 34px;
   display: flex;
@@ -268,6 +304,7 @@ h2 {
   .section-heading {
     grid-template-columns: 1fr;
   }
+  .comparison-row { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .section-heading { display: grid; }
   .flow-line.horizontal, .flow-line.diagonal { display: none; }
   .center-connector { min-height: 60px; }
@@ -291,7 +328,7 @@ h2 {
   .brand-wrap { width: 100%; justify-content: center; }
   .brand-logo { width: 36px; height: 36px; }
   main { width: min(1260px, calc(100% - 20px)); }
-  .hero-copy, .hero-side, .node, .feedback-card, .layer-card, .ai-card, .repo-card, .test-card, .video-placeholder, .training-card { padding: 20px; }
+  .hero-copy, .hero-side, .node, .feedback-card, .layer-card, .ai-card, .repo-card, .test-card, .video-placeholder, .training-card, .comparison-summary { padding: 20px; }
   .section { padding: 40px 0; }
   h1 { font-size: clamp(34px, 12vw, 52px); }
   h2 { font-size: clamp(26px, 8vw, 36px); }
@@ -299,6 +336,7 @@ h2 {
   .mini-stat span { font-size: 28px; }
   .feature-pills { justify-content: flex-start; }
   .feature-pills span { width: 100%; text-align: center; }
+  .comparison-row { grid-template-columns: 1fr; gap: 8px; }
 }
 
 @media (max-width: 480px) {
