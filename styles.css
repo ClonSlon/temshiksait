@@ -208,7 +208,7 @@ h2 {
 .flow-line.diagonal.left { left: 16%; transform: rotate(20deg); transform-origin: left center; }
 .flow-line.diagonal.right { right: 16%; transform: rotate(-20deg); transform-origin: right center; }
 
-.feedback-grid, .layers-grid, .ai-grid, .test-grid {
+.feedback-grid, .layers-grid, .ai-grid, .test-grid, .training-grid {
   display: grid;
   gap: 18px;
 }
@@ -216,8 +216,9 @@ h2 {
 .layers-grid { grid-template-columns: repeat(3, 1fr); }
 .ai-grid { grid-template-columns: repeat(3, 1fr); }
 .test-grid { grid-template-columns: repeat(3, 1fr); }
-.feedback-card, .layer-card, .ai-card, .repo-card, .test-card { padding: 24px; }
-.ai-card.big, .test-card.big { grid-column: span 2; }
+.training-grid { grid-template-columns: repeat(3, 1fr); }
+.feedback-card, .layer-card, .ai-card, .repo-card, .test-card, .training-card { padding: 24px; }
+.ai-card.big, .test-card.big, .training-card.big { grid-column: span 2; }
 .feedback-card h4 { font-size: 20px; margin-bottom: 8px; letter-spacing: -0.03em; }
 .repo-card a { color: var(--accent); }
 
@@ -246,7 +247,7 @@ h2 {
 @media (max-width: 1120px) {
   .hero-panel,
   .top-row, .mid-row, .split-row,
-  .feedback-grid, .layers-grid, .ai-grid, .test-grid,
+  .feedback-grid, .layers-grid, .ai-grid, .test-grid, .training-grid,
   .section-heading {
     grid-template-columns: 1fr;
   }
@@ -261,8 +262,8 @@ h2 {
   .nav nav { gap: 12px; font-size: 13px; flex-wrap: wrap; }
   .hero-panel { padding-top: 70px; }
   .architecture-board { padding: 18px; }
-  .layers-grid, .ai-grid, .test-grid, .feedback-grid { grid-template-columns: 1fr; }
-  .ai-card.big, .test-card.big { grid-column: auto; }
+  .layers-grid, .ai-grid, .test-grid, .feedback-grid, .training-grid { grid-template-columns: 1fr; }
+  .ai-card.big, .test-card.big, .training-card.big { grid-column: auto; }
   .node { min-height: 0; }
   .tall-node { min-height: 0; }
 }
