@@ -12,8 +12,13 @@
     <div class="brand-wrap">
       <img src="./temshik-logo.png" alt="TEMSHIK" class="brand-logo" />
       <div class="brand">TEMSHIK</div>
+      <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
-    <nav>
+    <nav id="site-nav">
       <a href="#diagram">Карта системы</a>
       <a href="#compare">Сравнение</a>
       <a href="#test">Тест</a>
@@ -457,39 +462,111 @@
   </div>
 
   <script>
-    const backdrop = document.getElementById('modal-backdrop');
-    const modals = document.querySelectorAll('.info-modal');
-    const closeAllModals = () => {
-      backdrop.hidden = true;
-      modals.forEach((modal) => {
-        modal.hidden = true;
-        modal.classList.remove('is-open');
-      });
-      document.body.classList.remove('modal-open');
-    };
-    document.querySelectorAll('.smartmoney-trigger').forEach((button) => {
-      button.addEventListener('click', () => {
-        const target = document.getElementById(button.dataset.modalTarget);
-        if (!target) return;
+    (() => {
+      const backdrop = document.getElementById('modal-backdrop');
+      const modals = Array.from(document.querySelectorAll('.info-modal'));
+
+      const closeAllModals = () => {
+        if (backdrop) {
+          backdrop.hidden = true;
+          backdrop.classList.remove('is-open');
+          backdrop.style.display = 'none';
+        }
+        modals.forEach((modal) => {
+          modal.hidden = true;
+          modal.classList.remove('is-open');
+          modal.style.display = 'none';
+        });
+        document.body.classList.remove('modal-open');
+      };
+
+      const openModal = (target) => {
+        if (!target || !backdrop) return;
         closeAllModals();
         backdrop.hidden = false;
+        backdrop.style.display = 'block';
         target.hidden = false;
+        target.style.display = 'grid';
+        backdrop.classList.add('is-open');
         target.classList.add('is-open');
         document.body.classList.add('modal-open');
+      };
+
+      const header = document.querySelector('.nav');
+      const navToggle = document.querySelector('.nav-toggle');
+      const siteNav = document.getElementById('site-nav');
+      let menuOpenedAt = 0;
+      const closeMenu = () => {
+        if (!header || !navToggle || !siteNav) return;
+        header.classList.remove('menu-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      };
+      const openMenu = () => {
+        if (!header || !navToggle || !siteNav) return;
+        menuOpenedAt = Date.now();
+        header.classList.add('menu-open');
+        navToggle.setAttribute('aria-expanded', 'true');
+      };
+
+      document.addEventListener('click', (event) => {
+        const menuButton = event.target.closest('.nav-toggle');
+        if (menuButton) {
+          event.preventDefault();
+          if (header.classList.contains('menu-open')) closeMenu();
+          else openMenu();
+          return;
+        }
+
+        const trigger = event.target.closest('.smartmoney-trigger');
+        if (trigger) {
+          event.preventDefault();
+          openModal(document.getElementById(trigger.dataset.modalTarget));
+          return;
+        }
+        if (event.target === backdrop || event.target.closest('[data-modal-close]')) {
+          event.preventDefault();
+          closeAllModals();
+          return;
+        }
+        const modal = event.target.closest('.info-modal');
+        if (modal && !event.target.closest('.info-modal-card')) {
+          closeAllModals();
+          return;
+        }
+        if (header && header.classList.contains('menu-open') && !event.target.closest('.nav')) {
+          closeMenu();
+          return;
+        }
+        if (event.target.closest('#site-nav a')) {
+          closeMenu();
+        }
       });
-    });
-    backdrop.addEventListener('click', closeAllModals);
-    document.querySelectorAll('.info-modal').forEach((modal) => {
-      modal.addEventListener('click', (event) => {
-        if (event.target === modal) closeAllModals();
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeAllModals();
+          closeMenu();
+        }
       });
-    });
-    document.querySelectorAll('[data-modal-close]').forEach((button) => {
-      button.addEventListener('click', closeAllModals);
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeAllModals();
-    });
+
+      let lastScrollY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        if (window.innerWidth > 920) return;
+        if (Date.now() - menuOpenedAt < 700) {
+          lastScrollY = window.scrollY;
+          return;
+        }
+        const movedEnough = Math.abs(window.scrollY - lastScrollY) > 24;
+        if (movedEnough) {
+          closeMenu();
+          lastScrollY = window.scrollY;
+        }
+      }, { passive: true });
+
+      closeAllModals();
+      closeMenu();
+      window.temshikCloseModals = closeAllModals;
+    })();
   </script>
 </body>
 </html>
